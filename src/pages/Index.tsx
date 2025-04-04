@@ -1,8 +1,9 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Index = () => {
   return (
@@ -45,6 +46,129 @@ const Index = () => {
                     <div className="w-32 h-32 md:w-48 md:h-48 border-4 border-primary rounded-full animate-[spin_20s_linear_infinite]" />
                     <div className="absolute w-24 h-24 md:w-32 md:h-32 border-2 border-primary/60 rounded-md animate-[spin_15s_linear_infinite_reverse]" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Projects Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">Featured Projects</h2>
+                <p className="text-muted-foreground">Our innovative solutions in action</p>
+              </div>
+              <Link to="/work" className="mt-4 md:mt-0 flex items-center text-primary hover:underline">
+                View all projects <ChevronRight className="h-4 w-4 ml-1" />
+              </Link>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Project 1 */}
+              <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                <div className="h-56 bg-secondary relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/20 flex items-center justify-center">
+                    <div className="w-16 h-16 border-2 border-primary/30 rounded-full animate-[spin_15s_linear_infinite]" />
+                  </div>
+                </div>
+                <CardContent className="pt-5">
+                  <h3 className="text-xl font-bold mb-2">Structural Analysis Platform</h3>
+                  <p className="text-muted-foreground mb-4">Cloud-based solution for real-time structural analysis and modeling</p>
+                  <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                    View case study <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Project 2 */}
+              <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
+                <div className="h-56 bg-secondary relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-l from-primary/5 to-primary/20 flex items-center justify-center">
+                    <div className="w-20 h-20 border-2 border-primary/30 rounded-md animate-[spin_20s_linear_infinite_reverse]" />
+                  </div>
+                </div>
+                <CardContent className="pt-5">
+                  <h3 className="text-xl font-bold mb-2">Site Management System</h3>
+                  <p className="text-muted-foreground mb-4">Digital platform for construction site coordination and resource tracking</p>
+                  <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                    View case study <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+
+              {/* Project 3 */}
+              <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 md:block hidden lg:block">
+                <div className="h-56 bg-secondary relative overflow-hidden">
+                  <div className="absolute insite-0 bg-gradient-to-b from-primary/5 to-primary/20 flex items-center justify-center">
+                    <div className="w-24 h-24 border-2 border-primary/30 rotate-45 animate-[spin_25s_linear_infinite]" />
+                  </div>
+                </div>
+                <CardContent className="pt-5">
+                  <h3 className="text-xl font-bold mb-2">Material Estimation App</h3>
+                  <p className="text-muted-foreground mb-4">AI-powered tool for accurate construction material forecasting</p>
+                  <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+                    View case study <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Latest Insights Section */}
+        <section className="py-20 bg-secondary/50">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Latest Insights</h2>
+              <p className="text-muted-foreground">
+                Exploring the intersection of civil engineering and cutting-edge technology
+              </p>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <div className="aspect-video bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="h-full bg-gradient-to-br from-secondary to-secondary/30 flex items-center justify-center">
+                  <div className="p-8 text-center">
+                    <div className="inline-block p-3 rounded-full bg-primary mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">2023 Tech Trends in Civil Engineering</h3>
+                    <p className="text-gray-600 mb-6">
+                      Download our comprehensive report on emerging technologies transforming the civil engineering landscape
+                    </p>
+                    <button className="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">
+                      Get the Report
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-primary">
+                  <span className="text-sm text-muted-foreground">April 2, 2025</span>
+                  <h3 className="text-xl font-bold mt-1 mb-2">The Future of Smart Infrastructure</h3>
+                  <p className="mb-4">
+                    Exploring how IoT sensors and real-time monitoring are revolutionizing infrastructure maintenance and safety.
+                  </p>
+                  <Link to="#" className="inline-flex items-center text-primary hover:underline">
+                    Read more <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+                
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-primary">
+                  <span className="text-sm text-muted-foreground">March 15, 2025</span>
+                  <h3 className="text-xl font-bold mt-1 mb-2">Sustainable Design Through Technology</h3>
+                  <p className="mb-4">
+                    How advanced software tools are enabling more environmentally responsible civil engineering projects.
+                  </p>
+                  <Link to="#" className="inline-flex items-center text-primary hover:underline">
+                    Read more <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
                 </div>
               </div>
             </div>
