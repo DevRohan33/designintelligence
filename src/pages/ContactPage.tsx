@@ -9,14 +9,6 @@ const ContactPage = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="pt-24">
-        <section className="py-16 bg-secondary">
-          <div className="container-custom">
-            <h1 className="text-4xl md:text-5xl font-bold">Contact Us</h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-              Reach out to discuss how we can help with your engineering technology needs. We're here to answer any questions you may have.
-            </p>
-          </div>
-        </section>
 
         <Contact />
         
@@ -30,9 +22,9 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-semibold text-lg">Main Office</h3>
                     <p className="text-muted-foreground">
-                      1234 Innovation Drive<br />
-                      Tech City, CA 98765<br />
-                      United States
+                      Old Police Line Road<br />
+                      Berhampore - 742101<br />
+                      West Bengal , India
                     </p>
                   </div>
                 </div>
@@ -48,10 +40,16 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
-              
-              <div className="aspect-video bg-[#e6e6e6] rounded-lg flex items-center justify-center">
-                <p className="text-muted-foreground">[Map Embed Placeholder]</p>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3642.5067161780553!2d88.245145!3d24.083669699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f97e80350ffcc9%3A0xa020bd5641cf1ca4!2sOld%20Police%20Line%20Rd%2C%20Gora%20Bazar%2C%20West%20Bengal%20742101!5e0!3m2!1sen!2sin!4v1743877195222!5m2!1sen!2sin"
+                  className="w-full h-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
+
             </div>
           </div>
         </section>

@@ -11,8 +11,16 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="font-bold text-xl">
-            TECH<span className="font-light">BRIDGE</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <img
+              src="images/design_intelligence_llp_logo.jpg"
+              alt="Company Logo"
+              className="h-8 w-auto"
+            />
+            <span className="text-2xl font-bold tracking-wide">
+              <span className="text-black">DESIGN</span>
+              <span className="font-light"> INTELLIGENCE</span> LLP.
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

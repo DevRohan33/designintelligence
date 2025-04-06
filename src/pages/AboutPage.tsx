@@ -26,31 +26,23 @@ const AboutPage = () => {
                 <h2 className="text-3xl font-bold mb-6">Our History</h2>
                 <div className="space-y-4">
                   <div className="border-l-2 border-primary pl-4">
-                    <h3 className="font-semibold">2018</h3>
-                    <p className="text-muted-foreground">TechBridge founded by Jane Smith with a vision to solve civil engineering challenges through technology</p>
-                  </div>
-                  <div className="border-l-2 border-primary pl-4">
-                    <h3 className="font-semibold">2019</h3>
-                    <p className="text-muted-foreground">Launched our first product, Site Analysis Toolkit, with over 200 clients in the first year</p>
-                  </div>
-                  <div className="border-l-2 border-primary pl-4">
-                    <h3 className="font-semibold">2020</h3>
-                    <p className="text-muted-foreground">Expanded team to include specialized civil engineers alongside software developers</p>
-                  </div>
-                  <div className="border-l-2 border-primary pl-4">
-                    <h3 className="font-semibold">2022</h3>
-                    <p className="text-muted-foreground">Partnered with State Transportation Department on major infrastructure project</p>
-                  </div>
-                  <div className="border-l-2 border-primary pl-4">
                     <h3 className="font-semibold">2023</h3>
-                    <p className="text-muted-foreground">Opened second office location and expanded services internationally</p>
+                    <p className="text-muted-foreground">Started as a freelance initiative focused on solving civil engineering problems using technology, founded by Rupanzil Mamun Prince.</p>
+                  </div>
+                  <div className="border-l-2 border-primary pl-4">
+                    <h3 className="font-semibold">2024</h3>
+                    <p className="text-muted-foreground">Officially launched as a full-fledged IT Services and Consulting company addressing multi-disciplinary engineering challenges.</p>
+                  </div>
+                  <div className="border-l-2 border-primary pl-4">
+                    <h3 className="font-semibold">2025</h3>
+                    <p className="text-muted-foreground">Successfully completed 4+ projects for international clients, marking a strong beginning in the global market.</p>
                   </div>
                 </div>
               </div>
               
               <div className="bg-white p-8 rounded-lg border border-border">
-                <h2 className="text-3xl font-bold mb-6">Our Values</h2>
-                <div className="space-y-4">
+                <h2 className="text-3xl font-bold mb-6">Why We're Different</h2>
+                {/* <div className="space-y-4">
                   <div>
                     <h3 className="text-xl font-semibold">Innovation</h3>
                     <p className="text-muted-foreground">We constantly explore new technologies and approaches to solve engineering challenges.</p>
@@ -67,6 +59,20 @@ const AboutPage = () => {
                     <h3 className="text-xl font-semibold">Partnership</h3>
                     <p className="text-muted-foreground">We work closely with our clients, building lasting relationships based on trust.</p>
                   </div>
+                </div> */}
+                <div className='space-y-4'>
+                  <ul className="list-disc list-inside text-muted-foreground">
+                    <li>Tech + Engineering synergy</li>
+                    <li>Client-first, solution-focused approach</li>
+                    <li>Multi-disciplinary team of experts</li>
+                    <li>Rapid delivery with robust results</li><br></br>
+                  </ul>
+                </div>
+                <div className='space-y-4'>
+                  <h3 className="font-semibold text-xl mb-2">Fun Fact</h3>
+                  <p className="text-muted-foreground">
+                    Our first project was completed using just 2 laptops, coffee, and pure passion. Now, we serve clients across 5+ countries!
+                  </p>
                 </div>
               </div>
             </div>

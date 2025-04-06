@@ -10,10 +10,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <Link to="/" className="font-bold text-xl">
-              TECH<span className="font-light">BRIDGE</span>
+              DESIGN <span className="font-light">INTELLIGENCE</span>LLP
             </Link>
             <p className="mt-4 text-primary-foreground/80 max-w-md">
-              Bridging the gap between civil engineering challenges and innovative technology solutions. We specialize in creating software that simplifies complex engineering processes.
+              We are bridging the gap between the traditional engineering space and tech using smart and custome-built software solution.
             </p>
           </div>
           
@@ -31,16 +31,16 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4">Contact</h3>
             <ul className="space-y-2 text-primary-foreground/80">
-              <li>contact@techbridge.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>1234 Innovation Drive,<br />Tech City, CA 98765</li>
+              <li>designintelligence@gmail.com</li>
+              <li>+91  8584823197</li>
+              <li>Old Police Line Road,<br />Berhampore, West Bengal 742101</li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-primary-foreground/70">
-            © {currentYear} TechBridge. All rights reserved.
+            © {currentYear} DesignIntelligence. All rights reserved.
           </p>
           
           <div className="flex space-x-4 mt-4 sm:mt-0">

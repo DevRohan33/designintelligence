@@ -102,7 +102,7 @@ const Contact = () => {
                 <Mail className="mr-4 text-muted-foreground" />
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="mt-1">contact@techbridge.com</p>
+                  <p className="mt-1">designintelligence@gmail.com</p>
                 </div>
               </div>
               
@@ -110,7 +110,7 @@ const Contact = () => {
                 <Phone className="mr-4 text-muted-foreground" />
                 <div>
                   <h4 className="font-medium">Phone</h4>
-                  <p className="mt-1">+1 (555) 123-4567</p>
+                  <p className="mt-1">+91 8584823197</p>
                 </div>
               </div>
               
@@ -118,14 +118,14 @@ const Contact = () => {
                 <MapPin className="mr-4 text-muted-foreground" />
                 <div>
                   <h4 className="font-medium">Office</h4>
-                  <p className="mt-1">1234 Innovation Drive, Tech City, CA 98765</p>
+                  <p className="mt-1">Old Police Line Road, Berhampore, West Bengal 742101</p>
                 </div>
               </div>
             </div>
             
             <div className="pt-6 border-t border-border">
               <h3 className="text-xl font-bold mb-4">Office Hours</h3>
-              <p className="text-muted-foreground mb-2">Monday - Friday: 9:00 AM - 6:00 PM</p>
+              <p className="text-muted-foreground mb-2">Monday - Friday: 10:00 AM - 8:00 PM</p>
               <p className="text-muted-foreground">Saturday - Sunday: Closed</p>
             </div>
           </div>

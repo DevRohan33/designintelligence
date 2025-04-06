@@ -21,13 +21,6 @@ const Solutions = () => {
   return (
     <section className="section-padding" id="solutions">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">Our Solutions</h2>
-          <p className="mt-4 text-muted-foreground">
-            We identify common engineering challenges and develop innovative IT solutions.
-          </p>
-        </div>
-        
         <div className="space-y-12 mt-12">
           {solutions.map((item, index) => (
             <div key={index} className="border border-border rounded-lg overflow-hidden">

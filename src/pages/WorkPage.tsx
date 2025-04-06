@@ -5,36 +5,36 @@ import { ArrowRight } from 'lucide-react';
 
 const projects = [
   {
-    title: "Highway Construction Planner",
-    summary: "Integrated solution for highway project management",
-    description: "A comprehensive tool that helps civil engineers plan and manage highway construction projects from initial survey to completion.",
-    client: "State Transportation Department",
+    title: "Three Viewer Lattice",
+    summary: "Integrated solution for Tower project",
+    description: "A 3D comprehensive tool that helps civil engineers plan and manage Tower Construction projects.",
+    client: "Confidential State Agency (NDA Compliant)",
     year: "2023",
-    image: "bg-[#f2f2f2]"
+    image: "/images/three_view.jpg"
   },
   {
-    title: "Bridge Maintenance System",
-    summary: "Real-time monitoring and maintenance scheduling",
-    description: "IoT-integrated software for monitoring structural health of bridges and automatically scheduling maintenance based on collected data.",
-    client: "Regional Infrastructure Authority",
-    year: "2022",
-    image: "bg-[#e6e6e6]"
+    title: "Gutter Tool",
+    summary: "Real-time data filtering",
+    description: "Filters essential data from large sources to ensure perfect planning and execution of street gutter.",
+    client: "PY-Engineering",
+    year: "2024",
+    image: "/images/gutter.png"
   },
   {
-    title: "Urban Planning Tool",
-    summary: "3D visualization and analysis for urban development",
-    description: "Advanced simulation tool for urban planners that provides 3D visualization and impact analysis of new developments.",
-    client: "Metropolitan Planning Office",
-    year: "2023",
-    image: "bg-[#d9d9d9]"
+    title: "Automatic BOM Generator",
+    summary: "2D visualization and structural strength evaluation tool ",
+    description: "A specialized tool designed for tower analysis, offering 2D visualization, structural strength validation, and seamless DXF export for engineering workflows.",
+    client: "Confidential State Agency (NDA Compliant)",
+    year: "2024 - Present",
+    image: "/images/bom-automation2.jpg"
   },
   {
-    title: "Water Resource Manager",
-    summary: "Comprehensive water system modeling and management",
-    description: "Software for monitoring, analyzing, and managing water resources including reservoirs, pipelines, and treatment facilities.",
-    client: "Municipal Water Department",
-    year: "2021",
-    image: "bg-[#cccccc]"
+    title: "Staco OSM Frontend",
+    summary: "Internal tool for precise stair tread data access",
+    description: "An engineer-focused frontend system designed to streamline access to structured stair tread data, featuring admin controls for managing entries and internal operations.",
+    client: "PY-Engineering",
+    year: "2024-Present",
+    image: "/images/staco.png"
   },
   {
     title: "Construction Document Automator",
@@ -49,33 +49,9 @@ const projects = [
     summary: "Mobile tool for on-site structural assessments",
     description: "Mobile application that allows engineers to conduct structural assessments on-site and generate instant reports.",
     client: "Engineering Consultancy Firm",
-    year: "2023",
+  year: "2025",
     image: "bg-[#e6e6e6]"
   },
-  {
-    title: "Soil Testing Database",
-    summary: "Centralized system for soil testing data",
-    description: "Database application for storing, analyzing, and visualizing soil testing data across multiple project sites.",
-    client: "Geotechnical Engineering Company",
-    year: "2021",
-    image: "bg-[#d9d9d9]"
-  },
-  {
-    title: "Project Timeline Visualizer",
-    summary: "Visual tool for project scheduling and tracking",
-    description: "Interactive Gantt chart and timeline tool specifically designed for civil engineering project management.",
-    client: "Multiple Clients",
-    year: "2022",
-    image: "bg-[#cccccc]"
-  },
-  {
-    title: "Safety Compliance System",
-    summary: "Digital solution for safety regulation compliance",
-    description: "Automated system for tracking safety compliance on construction sites, including checklists, incident reporting, and analytics.",
-    client: "Construction Safety Association",
-    year: "2023",
-    image: "bg-[#f2f2f2]"
-  }
 ];
 
 const WorkPage = () => {
@@ -101,10 +77,17 @@ const WorkPage = () => {
                   key={index} 
                   className="group bg-white rounded-lg overflow-hidden border border-border hover:shadow-md transition-shadow"
                 >
-                  <div className={`aspect-video ${project.image} flex items-center justify-center`}>
-                    <div className="w-16 h-16 border-2 border-primary/30 rounded-full flex items-center justify-center">
-                      <div className="w-8 h-8 bg-primary rounded-md"></div>
-                    </div>
+                  <div 
+                    className="aspect-video bg-center flex items-center justify-center bg-white">
+                    {project.image.startsWith("bg") ? (
+                      <div className={`${project.image} w-full h-full`}></div>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="object-contain h-full w-full"
+                      />
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold">{project.title}</h3>

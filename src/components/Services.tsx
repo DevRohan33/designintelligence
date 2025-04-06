@@ -38,12 +38,12 @@ const Services = () => {
   return (
     <section className="section-padding bg-secondary" id="services">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        {/* <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">Our Services</h2>
           <p className="mt-4 text-muted-foreground">
             We provide specialized IT solutions to solve complex civil engineering problems.
           </p>
-        </div>
+        </div> */}
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (

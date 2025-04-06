@@ -1,9 +1,13 @@
-
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
+import React from 'react';
+import SimpleScene from '@/components/3DModel';
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react'
+
 
 const Index = () => {
   return (
@@ -20,7 +24,7 @@ const Index = () => {
                   Meets Technology
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground">
-                  Welcome to TechBridge, where we create innovative tech solutions for civil engineering challenges.
+                  Welcome to Design Intelligence LLP, where we bridging the gap between civil engineering challenges and innovative technology solutions. We specialize in creating software that simplifies complex engineering processes.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link to="/services" className="px-6 py-3 btn-primary rounded-md text-center">
@@ -31,21 +35,13 @@ const Index = () => {
                   </Link>
                 </div>
               </div>
-              
-              <div className="relative">
-                <div className="aspect-square bg-secondary rounded-md flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-20">
-                    {[...Array(9)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="border border-muted-foreground/20"
-                      />
-                    ))}
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 md:w-48 md:h-48 border-4 border-primary rounded-full animate-[spin_20s_linear_infinite]" />
-                    <div className="absolute w-24 h-24 md:w-32 md:h-32 border-2 border-primary/60 rounded-md animate-[spin_15s_linear_infinite_reverse]" />
-                  </div>
+              <div className="relative flex justify-center items-center">
+                <div className="w-[500px] h-[500px]  rounded-md flex items-center justify-center overflow-hidden ">
+                  <img
+                    src="/images/homepaeg.png"
+                    alt="Civil engineering tech image"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>
@@ -68,14 +64,16 @@ const Index = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Project 1 */}
               <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div className="h-56 bg-secondary relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/20 flex items-center justify-center">
-                    <div className="w-16 h-16 border-2 border-primary/30 rounded-full animate-[spin_15s_linear_infinite]" />
-                  </div>
+                <div className="h-56  bg-white flex items-center justify-center">
+                <img
+                  src="/images/bom-automation2.jpg"
+                  alt="Automatic BOM Generator"
+                  className="object-contain h-full w-full"
+                />
                 </div>
                 <CardContent className="pt-5">
-                  <h3 className="text-xl font-bold mb-2">Structural Analysis Platform</h3>
-                  <p className="text-muted-foreground mb-4">Cloud-based solution for real-time structural analysis and modeling</p>
+                  <h3 className="text-xl font-bold mb-2">Automatic BOM Generator</h3>
+                  <p className="text-muted-foreground mb-4">2D visualization and structural strength evaluation tool</p>
                   <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
                     View case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -84,14 +82,16 @@ const Index = () => {
 
               {/* Project 2 */}
               <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div className="h-56 bg-secondary relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-l from-primary/5 to-primary/20 flex items-center justify-center">
-                    <div className="w-20 h-20 border-2 border-primary/30 rounded-md animate-[spin_20s_linear_infinite_reverse]" />
-                  </div>
+                <div className="h-56 bg-white flex items-center justify-center">
+                <img
+                  src="/images/gutter.png"
+                  alt="Gutter Tool"
+                  className="object-contain h-full w-full"
+                />
                 </div>
                 <CardContent className="pt-5">
-                  <h3 className="text-xl font-bold mb-2">Site Management System</h3>
-                  <p className="text-muted-foreground mb-4">Digital platform for construction site coordination and resource tracking</p>
+                  <h3 className="text-xl font-bold mb-2">Gutter Tool</h3>
+                  <p className="text-muted-foreground mb-4">Filters essential data from large sources to ensure perfect planning</p>
                   <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
                     View case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -100,14 +100,16 @@ const Index = () => {
 
               {/* Project 3 */}
               <Card className="overflow-hidden border-0 shadow-md hover:shadow-xl transition-shadow duration-300 md:block hidden lg:block">
-                <div className="h-56 bg-secondary relative overflow-hidden">
-                  <div className="absolute insite-0 bg-gradient-to-b from-primary/5 to-primary/20 flex items-center justify-center">
-                    <div className="w-24 h-24 border-2 border-primary/30 rotate-45 animate-[spin_25s_linear_infinite]" />
-                  </div>
+                <div className="h-56 bg-white flex items-center justify-center">
+                <img
+                  src="/images/three_view.jpg"
+                  alt="Three Viewer Lattice"
+                  className="object-contain h-full w-full"
+                />
                 </div>
                 <CardContent className="pt-5">
-                  <h3 className="text-xl font-bold mb-2">Material Estimation App</h3>
-                  <p className="text-muted-foreground mb-4">AI-powered tool for accurate construction material forecasting</p>
+                  <h3 className="text-xl font-bold mb-2">Three Viewer Lattice</h3>
+                  <p className="text-muted-foreground mb-4">A 3D comprehensive tool for plan and manage Tower Construction projects</p>
                   <Link to="/work" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
                     View case study <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -137,7 +139,7 @@ const Index = () => {
                         <polyline points="14 2 14 8 20 8"/>
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">2023 Tech Trends in Civil Engineering</h3>
+                    <h3 className="text-2xl font-bold mb-2">2024 Tech Trends in Civil Engineering</h3>
                     <p className="text-gray-600 mb-6">
                       Download our comprehensive report on emerging technologies transforming the civil engineering landscape
                     </p>
