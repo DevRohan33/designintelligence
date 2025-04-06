@@ -3,11 +3,6 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
-import React from 'react';
-import SimpleScene from '@/components/3DModel';
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react'
-
 
 const Index = () => {
   return (
