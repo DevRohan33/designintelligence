@@ -11,6 +11,7 @@ import WorkPage from "./pages/WorkPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import * as THREE from 'three';
 
 const queryClient = new QueryClient();
 

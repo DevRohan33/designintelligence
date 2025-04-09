@@ -3,17 +3,25 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
+import React, { Suspense} from 'react';
+import ModelViewer from '@/components/ModelViewer';
 
+// const Model = () => {
+//   const { scene } = useGLTF('/model.glb');
+//   return <primitive object={scene} scale={1.5} />;
+// };
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-20 md:pt-40 md:pb-28">
+        <section className="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
           <div className="container-custom">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
+              <div className="space-y-6 z-20 relative">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   Civil Engineering <br />
                   Meets Technology
@@ -30,16 +38,23 @@ const Index = () => {
                   </Link>
                 </div>
               </div>
-              <div className="relative flex justify-center items-center">
-                <div className="w-[500px] h-[500px]  rounded-md flex items-center justify-center overflow-hidden ">
-                  <img
-                    src="/images/homepaeg.png"
-                    alt="Civil engineering tech image"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
             </div>
+          </div>
+          <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-full max-w-[1000px] z-0 pointer-events-none">
+          {/* <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#ffffff80] to-transparent blur-3xl opacity-20"></div> */}
+                <ModelViewer 
+                  modelPath="/model.glb"
+                  className="w-full h-[500px]"
+                />
+                
+                {/* <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[5, 5, 5]} />
+                  <Suspense fallback={null}>
+                    <Model />
+                  </Suspense>
+                  <OrbitControls enableZoom={false} autoRotate />
+                </Canvas> */}
           </div>
         </section>
 
