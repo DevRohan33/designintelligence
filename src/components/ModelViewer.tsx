@@ -1,25 +1,73 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, ContactShadows } from '@react-three/drei';
-import { Vector3, Object3D } from 'three';
+import { Group, Vector3, Object3D } from 'three';
+import { useState } from 'react';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useSpring ,  animated } from '@react-spring/three';
 
 interface ModelProps {
   modelPath: string;
   scale?: number;
-  position?: Vector3 | [number, number, number];
+  position?: [number, number, number];
+  isAnimating?: boolean;
 }
-
-const Model: React.FC<ModelProps> = ({ modelPath, scale = 1.5, position = [0, -1.2, 0] }) => {
+// animation
+const AnimateModel: React.FC<ModelProps> = ({
+  modelPath,
+  scale = 1.5,
+  position = [0, -1.2, 0],
+  isAnimating = false,
+}) => {
   const { scene } = useGLTF(modelPath) as unknown as { scene: Object3D };
+
+  const { position: animatedPos } = useSpring({
+    position: isAnimating ? [2, 0.5, 1] : position,
+    config: { tension: 120, friction: 14 },
+    loop: false,
+  });
+
   return (
-    <primitive 
-      object={scene} 
-      scale={scale} 
-      position={position} 
-      dispose={null} 
+    <animated.primitive
+      object={scene}
+      scale={scale}
+      position={animatedPos as unknown as [number, number, number]}
+      dispose={null}
     />
   );
 };
+//Camera Rig
+const CameraRig: React.FC<{ children : React.ReactNode }> = ({ children}) => {
+  const rigRef =  useRef<Group>(null);
+
+  useFrame(({ mouse }) => {
+    if ( rigRef.current){
+      rigRef.current.rotation.y = mouse.x * 0.5;
+      rigRef.current.rotation.x = mouse.y * 0.2;
+    }
+  })
+  return <group ref={rigRef}>{children}</group>
+}
+
+// const Model: React.FC<ModelProps> = ({ modelPath, scale = 1.5, position = [0, -1.2, 0] }) => {
+//   const { scene } = useGLTF(modelPath) as unknown as { scene: Object3D };
+//   return (
+//     <primitive 
+//       object={scene} 
+//       scale={scale} 
+//       position={position} 
+//       dispose={null} 
+//     />
+//   );
+// };
+
+const FallbackComponent = () => (
+  <mesh>
+    <boxGeometry args={[1, 1, 1]} />
+    <meshStandardMaterial color="lightgray" />
+  </mesh>
+);
 
 interface ModelViewerProps {
   modelPath?: string;
@@ -30,14 +78,44 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
   modelPath = '/model.glb',
   className
 }) => {
+  const [isAnimating,setIsAnimating] = useState(false);
+  const triggerAnimatation = () => {
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 1200);
+  }
+
   return (
-    <div className={className} style={{ width: '100%', height: '500px', backgroundColor: '#fff' }}>
+    <div 
+      className={className}
+      style={{
+        width: '100%',
+        height: '600px',
+        backgroundColor: '#fff' ,
+        position:'relative'
+      }}
+    >
+      <button
+        onClick={triggerAnimatation}
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          zIndex: 10,
+          padding: '10px 16px',
+          background: '#333',
+          color:'#fff',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer'
+        }}
+      >
+        Animate Model
+      </button>
       <Canvas
         shadows
         camera={{ position: [0, 1.5, 3], fov: 45 }}
       >
-        {/* Ambient and directional light */}
-        <ambientLight intensity={0.9} />
+        <ambientLight intensity={1.9} />
         <directionalLight 
           position={[5, 5, 5]} 
           intensity={1} 
@@ -47,41 +125,27 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
         />
 
         <Suspense fallback={<FallbackComponent />}>
-          <Model modelPath={modelPath} scale={1.5} position={[0, 0.3, 0]} />
+          <CameraRig>
+            <AnimateModel
+              modelPath={modelPath}
+              scale={1.5}
+              position={[0,0.5,0]}
+              isAnimating={isAnimating}
+            />
+            <ContactShadows
+              position={[0, -1.5, 0]}
+              opacity={0.4}
+              scale={10}
+              blur={2}
+              far={1.6}
+            />
+            <Environment preset="studio" />
+          </CameraRig>
         </Suspense>
-
-        {/* Soft shadows under model */}
-        <ContactShadows
-          position={[0, -1.5, 0]}
-          opacity={0.4}
-          scale={10}
-          blur={2}
-          far={1.6}
-        />
-
-        {/* Optional: HDR environment light */}
-        <Environment preset="studio" />
-
-        {/* Controls */}
-        <OrbitControls
-          autoRotate
-          autoRotateSpeed={0.7}
-          enableZoom={true}
-          enablePan={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 3}
-        />
       </Canvas>
     </div>
   );
 };
-
-const FallbackComponent = () => (
-  <mesh>
-    <boxGeometry args={[1, 1, 1]} />
-    <meshStandardMaterial color="lightgray" />
-  </mesh>
-);
 
 useGLTF.preload('/model.glb');
 
