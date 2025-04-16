@@ -1,3 +1,5 @@
+// THIS IS DIAPP PAGE 
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +9,7 @@ const apps = [
     id: 1,
     title: "Beam Calculation App",
     description: "A powerful tool to calculate bending moments, shear forces, and support reactions.",
-    image: "/images/beam-app.jpg",
+    image: "/images/three_view.jpg",
     link: "https://67abb863b13c84da53b8e5bb--snazzy-taiyaki-917e9d.netlify.app/",
   },
   {
