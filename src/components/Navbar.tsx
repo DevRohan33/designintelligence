@@ -29,6 +29,8 @@ const Navbar = () => {
             <Link to="/services" className="text-sm font-medium line-animation">Services</Link>
             <Link to="/solutions" className="text-sm font-medium line-animation">Solutions</Link>
             <Link to="/work" className="text-sm font-medium line-animation">Our Work</Link>
+            <Link to="/diapp" className="text-sm font-medium line-animation">DL App</Link>
+            <Link to="/blog" className="text-sm font-medium line-animation">Blog</Link>
             <Link to="/about" className="text-sm font-medium line-animation">About Us</Link>
             <Link to="/contact" className="ml-4 px-4 py-2 btn-primary rounded-md text-sm font-medium">
               Contact Us
@@ -55,6 +57,8 @@ const Navbar = () => {
             <Link to="/services" className="text-sm font-medium" onClick={() => setIsOpen(false)}>Services</Link>
             <Link to="/solutions" className="text-sm font-medium" onClick={() => setIsOpen(false)}>Solutions</Link>
             <Link to="/work" className="text-sm font-medium" onClick={() => setIsOpen(false)}>Our Work</Link>
+            <Link to="/diapp" className="text-sm font-medium" onClick={() => setIsOpen(false)}>DI App</Link>
+            <Link to="/blog" className="text-sm font-medium" onClick={() => setIsOpen(false)}>Blog</Link>
             <Link to="/about" className="text-sm font-medium" onClick={() => setIsOpen(false)}>About Us</Link>
             <Link to="/contact" className="px-4 py-2 btn-primary rounded-md text-sm font-medium w-full text-center" onClick={() => setIsOpen(false)}>
               Contact Us
