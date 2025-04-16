@@ -3,16 +3,21 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
-import React, { Suspense} from 'react';
 import ModelViewer from '@/components/ModelViewer';
+import React, { useState } from 'react';
 
 // const Model = () => {
 //   const { scene } = useGLTF('/model.glb');
 //   return <primitive object={scene} scale={1.5} />;
 // };
 const Index = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const triggerAnimation = () => {
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 1200);
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -27,7 +32,7 @@ const Index = () => {
                   Meets Technology
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground">
-                  Welcome to Design Intelligence LLP, where we bridging the gap between civil engineering challenges and innovative technology solutions. We specialize in creating software that simplifies complex engineering processes.
+                  Welcome to Design Intelligence LLP, where we bridge the gap between civil engineering challenges and innovative technology solutions. We specialize in creating software that simplifies complex engineering processes.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link to="/services" className="px-6 py-3 btn-primary rounded-md text-center">
@@ -36,25 +41,24 @@ const Index = () => {
                   <Link to="/contact" className="px-6 py-3 border border-primary rounded-md text-center hover:bg-secondary transition-colors">
                     Get in Touch
                   </Link>
+                  <button
+                    onClick={triggerAnimation}
+                    className=" px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+                  >
+                    Animate Model
+                  </button>
+
                 </div>
               </div>
             </div>
           </div>
           <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-full max-w-[1000px] z-0 pointer-events-none">
-          {/* <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#ffffff80] to-transparent blur-3xl opacity-20"></div> */}
-                <ModelViewer 
-                  modelPath="/model.glb"
-                  className="w-full h-[500px]"
-                />
-                
-                {/* <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                  <ambientLight intensity={0.5} />
-                  <directionalLight position={[5, 5, 5]} />
-                  <Suspense fallback={null}>
-                    <Model />
-                  </Suspense>
-                  <OrbitControls enableZoom={false} autoRotate />
-                </Canvas> */}
+          <ModelViewer 
+            modelPath="/model.glb"
+            className="w-full h-[500px]"
+            isAnimating={isAnimating}
+          />
+
           </div>
         </section>
 
