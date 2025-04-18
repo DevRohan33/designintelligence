@@ -33,7 +33,7 @@ const apps = [
   },
 ];
 
-const DIAppPage = () => {
+const DiAppPage = () => {
   const [activeApp, setActiveApp] = useState<number | null>(null);
 
   const toggleApp = (id: number) => {
@@ -92,4 +92,4 @@ const DIAppPage = () => {
   );
 };
 
-export default DIAppPage;
+export default DiAppPage;
