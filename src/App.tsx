@@ -12,7 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import * as THREE from 'three';
 import BlogPage from "./pages/BlogPage";
-import DiAppPage from "./pages/DiappPage";
+import DiappPage from "./pages/DiappPage";
 import BlogDetail from "./pages/BlogDetails";
 import AdminEditor from "./pages/AdminEditor";
 
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/work" element={<WorkPage />} />
-          <Route path="diapp" element= {<DiAppPage/>}/>
+          <Route path="diapp" element= {<DiappPage/>}/>
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/admin/editor/:id" element={<AdminEditor />} />
