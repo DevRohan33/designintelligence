@@ -13,7 +13,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img
-              src="images/design_intelligence_llp_logo.jpg"
+              src="/design_intelligence_llp_logo.jpg"
               alt="Company Logo"
               className="h-8 w-auto"
             />

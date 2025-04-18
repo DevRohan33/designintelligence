@@ -12,7 +12,9 @@ import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import * as THREE from 'three';
 import BlogPage from "./pages/BlogPage";
-import DIAppPage from "./pages/DIAppPage";
+import DIAppPage from "./pages/DiappPage";
+import BlogDetail from "./pages/BlogDetails";
+import AdminEditor from "./pages/AdminEditor";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/work" element={<WorkPage />} />
           <Route path="diapp" element= {<DIAppPage/>}/>
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/admin/editor/:id" element={<AdminEditor />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
