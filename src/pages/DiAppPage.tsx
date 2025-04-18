@@ -46,7 +46,7 @@ const DIAppPage = () => {
       <main className="pt-24">
         <section className="bg-secondary py-16">
           <div className="container-custom text-center">
-            <h1 className="text-4xl md:text-5xl font-bold">DI App</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">DL App Showcase</h1>
             <p className="mt-4 text-lg text-muted-foreground">
               Explore our powerful engineering tools tailored for field professionals and students.
             </p>

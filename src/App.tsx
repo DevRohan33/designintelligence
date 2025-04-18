@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,7 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import * as THREE from 'three';
 import BlogPage from "./pages/BlogPage";
-import DIAppPage from "./pages/DiAppPage";
+import DIAppPage from "./pages/DIAppPage";
 
 const queryClient = new QueryClient();
 
