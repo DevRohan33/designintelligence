@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 import * as THREE from 'three';
 import BlogPage from "./pages/BlogPage";
 import DiappPage from "./pages/DiappPage";
-import BlogDetail from "./pages/BlogDetails";
+import BlogDetail from "./components/BlogDetails";
 import AdminEditor from "./pages/AdminEditor";
 
 const queryClient = new QueryClient();
