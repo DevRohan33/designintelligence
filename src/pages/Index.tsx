@@ -5,11 +5,8 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import ModelViewer from '@/components/ModelViewer';
 import React, { useState } from 'react';
+import { motion } from "framer-motion";
 
-// const Model = () => {
-//   const { scene } = useGLTF('/model.glb');
-//   return <primitive object={scene} scale={1.5} />;
-// };
 const Index = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -41,12 +38,37 @@ const Index = () => {
                   <Link to="/contact" className="px-6 py-3 border border-primary rounded-md text-center hover:bg-secondary transition-colors">
                     Get in Touch
                   </Link>
-                  <button
+                  {/* <button
                     onClick={triggerAnimation}
                     className=" px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
                   >
                     Animate Model
-                  </button>
+                  </button> */}
+                  <motion.button
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 2,
+                      boxShadow: "0px 0px 12px rgba(255,255,255,0.8)",
+                      background: "linear-gradient(135deg,rgb(9, 8, 7) 0%,rgb(142, 25, 25) 100%)",
+                      color: "#fff",
+                    }}
+                    whileTap={{ scale: 0.95, rotate: -2 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    onClick={triggerAnimation}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: "12px",
+                      border: "none",
+                      cursor: "pointer",
+                      background: "#fff",
+                      color: "#000",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                    }}
+                    
+                  >
+                    Animate Model
+                  </motion.button>
 
                 </div>
               </div>

@@ -69,4 +69,6 @@
   .line-animation:hover:after {
     @apply w-full;
   }
+
+  
 }

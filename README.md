@@ -6,6 +6,4 @@ Welcome to the official website of **Design Intelligence LLP**, where civil engi
 
 ## 🚀 Live Preview
 
-**[View Website](https://designintelligence-zxn8.vercel.app/)** 
-
-
+**[View Website](https://designintelligence-zxn8.vercel.app/)**

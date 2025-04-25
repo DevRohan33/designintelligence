@@ -63,6 +63,7 @@ const Navbar = () => {
             <Link to="/contact" className="px-4 py-2 btn-primary rounded-md text-sm font-medium w-full text-center" onClick={() => setIsOpen(false)}>
               Contact Us
             </Link>
+            
           </div>
         </div>
       )}

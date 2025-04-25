@@ -1,75 +1,84 @@
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { PenLine, Plus, LogOut ,Pencil} from "lucide-react";
+import { PenLine, Plus, LogOut, Pencil } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
-// Sample blog data with draft status
-const INITIAL_BLOGS = [
-  {
-    id: 1,
-    title: "Understanding Modern Software Architecture",
-    excerpt: "An in-depth look at how software architecture has evolved and best practices for today's applications.",
-    date: "April 15, 2025",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=800",
-    isDraft: false,
-  },
-  {
-    id: 2,
-    title: "The Future of Frontend Development",
-    excerpt: "Exploring emerging trends and technologies that will shape the future of web development.",
-    date: "April 10, 2025",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800",
-    isDraft: false,
-  },
-  {
-    id: 3,
-    title: "Building Scalable APIs with Modern Tools",
-    excerpt: "How to design and implement APIs that can handle growth and changing requirements.",
-    date: "April 5, 2025",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800",
-    isDraft: false,
-  },
-  {
-    id: 4,
-    title: "Building Scalable APIs with Modern Tools By Rohan",
-    excerpt: "How to design and implement APIs that can handle growth and changing requirements.",
-    date: "April 5, 2025",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800",
-    isDraft: false,
-  },
-];
-
-// Separate storage for draft blogs
-const DRAFT_BLOGS = [];
+import { loginAdmin, logoutAdmin, checkAuthState } from '@/lib/authService';
+import { getBlogs } from '@/lib/blogService';
+import { BlogPost } from '@/types/blog';
+import { BlogCard } from '@/components/BlogCard';
 
 const BlogPage = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [blogs, setBlogs] = useState(INITIAL_BLOGS);
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  // Filter only published blogs for the main page
+  useEffect(() => {
+    // Check auth state
+    const unsubscribe = checkAuthState((adminStatus) => {
+      setIsAdmin(adminStatus);
+    });
+
+    // Fetch blogs
+    const fetchBlogs = async () => {
+      try {
+        const blogData = await getBlogs(isAdmin);
+        setBlogs(blogData);
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to load blogs",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+    return () => unsubscribe();
+  }, [isAdmin, toast]);
+
+  const handleLogout = async () => {
+    try {
+      await logoutAdmin();
+      setIsAdmin(false);
+      toast({
+        title: "Logged out successfully",
+        description: "You have been logged out",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to logout",
+        variant: "destructive",
+      });
+    }
+  };
+
   const publishedBlogs = useMemo(() => {
     return blogs.filter(blog => !blog.isDraft);
   }, [blogs]);
-  
-// Logout 
-  const handleLogout = () => {
-    localStorage.removeItem("isAdminLoggedIn");
-    setIsAdmin(false);
-    toast({
-      title: "Logged out successfully",
-      description: "You have been logged out",
-    });
-  };
-  
 
-  // Show all blogs (including drafts) for admin, only published for others
   const displayedBlogs = isAdmin ? blogs : publishedBlogs;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 flex items-center justify-center">
+          <div>Loading blogs...</div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -78,53 +87,53 @@ const BlogPage = () => {
       <main className="pt-24">
         <section className="bg-secondary py-16">
           <div className="container-custom text-center">
-              <h1 className="text-4xl md:text-5xl font-bold">  
-                {isAdmin ? "Admin Dashboard" : "Our Blog"}
-              </h1>
-              <p className="mt-4 text-lg text-muted-foreground">
-                {isAdmin 
-                  ? "Manage your blog posts and drafts"
-                  : "Stay updated with insights, stories, and the latest trends at the intersection of engineering and technology."}
-              </p>
+            <h1 className="text-4xl md:text-5xl font-bold">  
+              {isAdmin ? "Admin Dashboard" : "Our Blog"}
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              {isAdmin 
+                ? "Manage your blog posts and drafts"
+                : "Stay updated with insights, stories, and the latest trends."}
+            </p>
           </div>
-          </section>
-          <div className="mt-12"/>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedBlogs.map((blog) => (
-              <BlogCard 
-                key={blog.id} 
-                blog={blog} 
-                isAdmin={isAdmin} 
-              />
-            ))}
-            
-            {isAdmin && (
-              <Card className="overflow-hidden flex flex-col h-full items-center justify-center">
-                <Link 
-                  to="/admin/editor/new" 
-                  className="flex flex-col items-center justify-center p-8 h-full w-full hover:bg-muted transition-colors"
-                >
-                  <Plus className="h-12 w-12 mb-4 text-muted-foreground" />
-                  <span className="text-lg font-medium text-muted-foreground">Add New Blog</span>
-                </Link>
-              </Card>
-            )}
-          </div>
-          <div className="mb-24"/>
-          {isAdmin && (
-            <div className="fixed bottom-6 right-6 z-50">
-              <Button 
-                size="icon" 
-                variant="destructive" 
-                className="rounded-full shadow-lg"
-                onClick={handleLogout}
-              >
-                <LogOut className="w-5 h-5" />
-              </Button>
-            </div>
-          )}
+        </section>
 
-        
+        <div className="mt-12"/>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container-custom">
+          {displayedBlogs.map((blog) => (
+            <BlogCard 
+              key={blog.id} 
+              blog={blog} 
+              isAdmin={isAdmin} 
+            />
+          ))}
+          
+          {isAdmin && (
+            <Card className="overflow-hidden flex flex-col h-full items-center justify-center">
+              <Link 
+                to="/admin/editor/new" 
+                className="flex flex-col items-center justify-center p-8 h-full w-full hover:bg-muted transition-colors"
+              >
+                <Plus className="h-12 w-12 mb-4 text-muted-foreground" />
+                <span className="text-lg font-medium text-muted-foreground">Add New Blog</span>
+              </Link>
+            </Card>
+          )}
+        </div>
+        <div className="mb-24"/>
+
+        {isAdmin && (
+          <div className="fixed bottom-6 right-6 z-50">
+            <Button 
+              size="icon" 
+              variant="destructive" 
+              className="rounded-full shadow-lg"
+              onClick={handleLogout}
+            >
+              <LogOut className="w-5 h-5" />
+            </Button>
+          </div>
+        )}
       </main>
       
       {!isAdmin && (
@@ -137,75 +146,57 @@ const BlogPage = () => {
         </button>
       )}
       
-      {isLoginOpen && <LoginModal onClose={() => setIsLoginOpen(false)} onLoginSuccess={() => setIsAdmin(true)} />}
+      {isLoginOpen && (
+        <LoginModal 
+          onClose={() => setIsLoginOpen(false)} 
+          onLoginSuccess={() => setIsAdmin(true)} 
+        />
+      )}
       
       <Footer />
     </div>
   );
 };
 
-// Blog Card Component
-const BlogCard = ({ blog, isAdmin }) => {
-  return (
-    <Card className="overflow-hidden flex flex-col h-full relative">
-      {isAdmin && (
-        <Link 
-          to={`/admin/editor/${blog.id}`}
-          className="absolute top-2 right-2 p-2 bg-background/80 rounded-full hover:bg-background transition-colors z-10"
-        >
-          <PenLine className="w-4 h-4" />
-        </Link>
-      )}
-      <div className="h-48 overflow-hidden">
-        <img 
-          src={blog.image} 
-          alt={blog.title} 
-          className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-        />
-      </div>
-      <CardHeader>
-        <div className="text-sm text-muted-foreground mb-2">{blog.date}</div>
-        <h3 className="text-xl font-semibold line-clamp-2">{blog.title}</h3>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-muted-foreground line-clamp-3">{blog.excerpt}</p>
-      </CardContent>
-      <CardFooter>
-        <Button asChild variant="link" className="p-0 h-auto">
-          <Link to={`/blog/${blog.id}`}>Read More →</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  );
-};
-
-// Login Modal Component
-const LoginModal = ({ onClose, onLoginSuccess }) => {
+// Updated LoginModal with Firebase auth
+const LoginModal = ({ onClose, onLoginSuccess }: { 
+  onClose: () => void, 
+  onLoginSuccess: () => void 
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     
-  if (email === "admin@example.com" && password === "1") {
-    localStorage.setItem("isAdminLoggedIn", "true");
-
-    toast({
-      title: "Login successful",
-      description: "Welcome back, admin!",
-    });
-
-    onLoginSuccess?.();
-    onClose?.();
-  } else {
-    toast({
-      title: "Login failed",
-      description: "Invalid email or password",
-      variant: "destructive",
-    });
-  }
+    try {
+      const success = await loginAdmin(email, password);
+      if (success) {
+        toast({
+          title: "Login successful",
+          description: "Welcome back, admin!",
+        });
+        onLoginSuccess();
+        onClose();
+      } else {
+        toast({
+          title: "Login failed",
+          description: "Invalid email or password",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An error occurred during login",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -222,6 +213,7 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
           <div className="mb-6">
@@ -233,11 +225,24 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
           <div className="flex justify-end space-x-2">
-            <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
-            <Button type="submit">Login</Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={onClose}
+              disabled={loading}
+            >
+              Cancel
+            </Button>
+            <Button 
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </Button>
           </div>
         </form>
       </div>
