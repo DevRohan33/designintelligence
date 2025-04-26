@@ -1,16 +1,6 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "reactServer.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/reactServer.js"
-      }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
     ]
   }
   
