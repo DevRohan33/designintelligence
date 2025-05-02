@@ -8,8 +8,8 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white z-50 border-b border-border">
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
+      <div className="px-6 max-w-screen-xl mx-auto w-full">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img
@@ -17,22 +17,27 @@ const Navbar = () => {
               alt="Company Logo"
               className="h-8 w-auto"
             />
-            <span className="text-2xl font-bold tracking-wide">
-              <span className="text-black">DESIGN</span>
-              <span className="font-light"> INTELLIGENCE</span> LLP.
-            </span>
+            <div className="flex flex-col leading-tight text-left">
+              <span className="text-2xl font-extrabold text-ais-dark font-custom">
+                DESIGN
+              </span>
+              <span className="text-2xl font-normal text-ais-coral font-custom -mt-1">
+                INTELLIGENCE
+              </span>
+            </div>
+              
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-sm font-medium line-animation">Home</Link>
-            <Link to="/services" className="text-sm font-medium line-animation">Services</Link>
-            <Link to="/solutions" className="text-sm font-medium line-animation">Solutions</Link>
-            <Link to="/work" className="text-sm font-medium line-animation">Our Work</Link>
-            <Link to="/diapp" className="text-sm font-medium line-animation">DI App</Link>
-            <Link to="/blog" className="text-sm font-medium line-animation">Blog</Link>
+            <Link to="/" className="text-lg font-medium line-animation">Home</Link>
+            <Link to="/services" className="text-lg font-medium line-animation">Services</Link>
+            <Link to="/solutions" className="text-lg font-medium line-animation">Solutions</Link>
+            <Link to="/work" className="text-lg font-medium line-animation">Our Work</Link>
+            <Link to="/diapp" className="text-lg font-medium line-animation">DI App</Link>
+            <Link to="/blog" className="text-lg font-medium line-animation">Blog</Link>
             <Link to="/about" className="text-sm font-medium line-animation">About Us</Link>
-            <Link to="/contact" className="ml-4 px-4 py-2 btn-primary rounded-md text-sm font-medium">
+            <Link to="/contact" className="ml-4 px-6 py-3 btn-primary rounded-md text-lg font-medium">
               Contact Us
             </Link>
           </nav>
