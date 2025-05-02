@@ -17,14 +17,14 @@ const Navbar = () => {
               alt="Company Logo"
               className="h-8 w-auto"
             />
-            <div className="flex flex-col leading-tight text-left">
-              <span className="text-2xl font-extrabold text-ais-dark font-custom">
-                DESIGN
-              </span>
-              <span className="text-2xl font-normal text-ais-coral font-custom -mt-1">
-                INTELLIGENCE
-              </span>
+          <div className="leading-none text-left">
+            <div className="text-2xl font-bold text-ais-dark font-custom tracking-tight">
+              DESIGN
             </div>
+            <div className="text-2xl font-light text-ais-coral font-custom tracking-tight">
+              INTELLIGENCE
+            </div>
+          </div>
               
           </Link>
 
